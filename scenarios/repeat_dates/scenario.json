@@ -1,0 +1,42 @@
+{
+  "id": "repeat_dates",
+  "title": "Repeating tasks get the wrong date",
+  "task": "When I complete a repeating task, the next copy of it gets the wrong due date. Here is how it should work. Weekly tasks repeat 7 days after their due date, not 7 days after the day I complete them. Monthly tasks repeat on the same day of the next month. If the next month is too short for that day, use the last day of that month, but go back to the original day in later months: a task due Jan 31 repeats on Feb 28 (Feb 29 in a leap year), then Mar 31, then Apr 30. The new copy is not done. complete() returns the new copy's id, or None if the task doesn't repeat.",
+  "editable_files": [
+    "todo.py"
+  ],
+  "visible_tests": [
+    "test_visible.py"
+  ],
+  "hidden_tests": [
+    "test_hidden.py"
+  ],
+  "good_edit": {
+    "step": 1,
+    "text": "Rewrite complete() in todo.py. Weekly: next due = the task's due date + 7 days (never date.today()). Monthly: next due = the next month (roll the year over after December) on the task's original day of month, clamped to that month's last day using calendar.monthrange. The original day must survive every copy: give add() an optional anchor_day parameter (default due.day), store it on the task, and in complete() call self.add(title, next_due, repeat, anchor_day=item['anchor_day']). Never recompute the anchor from the new copy's due date, or Jan 31 -> Feb 28 -> Mar 28 instead of Mar 31. The new copy has done=False. Return the new id, or None for non-repeating tasks."
+  },
+  "mock": {
+    "hint_patterns": [
+      "anchor",
+      "monthrange",
+      "remember the (original|first) day",
+      "store the original day"
+    ],
+    "p_good_base": 0.2,
+    "p_good_hinted": 0.85
+  },
+  "order": 10,
+  "plain_edit": {
+    "text": "The app needs to remember which day of the month a repeating task was first due on, and keep that for every new copy. If a month is too short for that day, use the last day of that month just once, then go back to the original day in the months after. Weekly tasks should be due 7 days after their own due date, not 7 days after today."
+  },
+  "checks": {
+    "test_monthly_mid_month": "A monthly task due on the 15th repeats on the 15th of the next month.",
+    "test_month_end_clamps": "A monthly task due Jan 31 repeats on Feb 28, the last day of the short month.",
+    "test_month_end_goes_back_to_original_day": "After a short month, the task goes back to its original day: Jan 31, Feb 28, Mar 31, Apr 30.",
+    "test_leap_year": "In a leap year, a task due Jan 31 repeats on Feb 29.",
+    "test_year_rollover": "A monthly task due in December repeats in January of the next year.",
+    "test_weekly_counts_from_due_date": "A weekly task repeats 7 days after its due date, not 7 days after today.",
+    "test_new_copy_not_done_and_old_done": "Completing a task marks it done, and its new copy starts as not done.",
+    "test_non_repeating_returns_none": "Completing a task that doesn't repeat creates no new copy."
+  }
+}

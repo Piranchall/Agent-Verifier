@@ -1,0 +1,36 @@
+{
+  "id": "clear_completed",
+  "title": "Practice: clear completed leaves tasks behind",
+  "task": "In my to-do app, when I tick several tasks as done and press 'Clear completed', some of the finished tasks are still on the screen. Please fix it.",
+  "editable_files": [
+    "todo.py"
+  ],
+  "visible_tests": [
+    "test_visible.py"
+  ],
+  "hidden_tests": [
+    "test_hidden.py"
+  ],
+  "mock": {
+    "hint_patterns": [
+      "in[- ]place",
+      "same list",
+      "self\\.items\\[:\\]",
+      "don'?t (replace|reassign)",
+      "keeps? a reference",
+      "reference to self\\.items"
+    ],
+    "p_good_base": 0.3,
+    "p_good_hinted": 0.85
+  },
+  "order": 91,
+  "good_edit": {
+    "step": 1,
+    "text": "Fix clear_completed in todo.py by changing the list in place: self.items[:] = [item for item in self.items if not item['done']]. Do not assign a new list to self.items, because the screen keeps a reference to it."
+  },
+  "checks": {
+    "test_two_done_in_a_row": "Clear completed removes two finished tasks that are next to each other.",
+    "test_screen_sees_the_change": "The screen shows the cleared list straight away, without reloading.",
+    "test_nothing_done": "Clear completed with nothing finished changes nothing."
+  }
+}

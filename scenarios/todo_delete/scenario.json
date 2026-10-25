@@ -1,0 +1,38 @@
+{
+  "id": "todo_delete",
+  "title": "Practice: delete removes the wrong task",
+  "task": "I built a to-do app with an AI helper. When I click delete on a task, a different task disappears instead. Please fix the delete button. The UI calls TodoList.delete(item_id) with the id of the task the user clicked.",
+  "editable_files": [
+    "todo.py"
+  ],
+  "visible_tests": [
+    "test_visible.py"
+  ],
+  "hidden_tests": [
+    "test_hidden.py"
+  ],
+  "mock": {
+    "hint_patterns": [
+      "\\bid field\\b",
+      "\\bby (its|their|the) id\\b",
+      "not (by |the )?(its )?(position|index)",
+      "\\bsearch\\b",
+      "\\bfind the (item|task)\\b",
+      "\\bmatching id\\b",
+      "after (other|earlier|previous) deletions"
+    ],
+    "p_good_base": 0.25,
+    "p_good_hinted": 0.85
+  },
+  "order": 90,
+  "good_edit": {
+    "step": 1,
+    "text": "In todo.py, delete must find the task whose 'id' field equals item_id and remove that task. Do not use item_id as a list position: ids don't shift after earlier deletions."
+  },
+  "checks": {
+    "test_delete_first_task": "Deleting the first task removes that task and no other.",
+    "test_delete_after_earlier_delete": "Deleting still removes the right task after an earlier delete.",
+    "test_delete_last_task": "Deleting the last task removes it.",
+    "test_delete_middle_after_toggle": "Deleting a task in the middle works even after it was ticked."
+  }
+}

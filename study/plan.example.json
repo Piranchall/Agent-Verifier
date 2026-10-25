@@ -1,0 +1,83 @@
+{
+  "_help": [
+    "Copy this file to study/plan.json and edit it. Check it at http://localhost:8000/api/plan/check",
+    "Participant link: http://localhost:8000/?session=P01",
+    "run_id: a finished, failing run. calibrate.py lists failing run ids, and the researcher panel (?researcher=1) shows the id of the run you have open.",
+    "tool: on | off (off = baseline: no suggestion, one replay, no k-of-n).",
+    "mode: simple | detailed (starting view; the participant can still switch).",
+    "plant_suggest_step: step NUMBER as shown in the app (1, 2, 3...) that 'where to fix' will point at instead of the real suggestion. null = honest.",
+    "overstate_by: add this many to the shown 'k of n' (capped at n). 0 = honest.",
+    "minutes: optional soft time limit shown as a timer. practice: true marks a warm-up task.",
+    "warn_actions: true | false. Only with RELEASE_ACTIONS=on in .env and tool on. true (default) = before a replay the person is warned about irreversible actions and can hold them; false = the actions just happen on every replay (RQ4 baseline).",
+    "group: free text you analyse by (e.g. beginner / experienced)."
+  ],
+  "participants": {
+    "P01": {
+      "group": "beginner",
+      "tasks": [
+        {
+          "run_id": "run-REPLACE-practice",
+          "tool": "on",
+          "mode": "simple",
+          "practice": true,
+          "minutes": 8
+        },
+        {
+          "run_id": "run-REPLACE-repeat",
+          "tool": "on",
+          "mode": "simple",
+          "plant_suggest_step": null,
+          "overstate_by": 0,
+          "minutes": 15
+        },
+        {
+          "run_id": "run-REPLACE-undo",
+          "tool": "on",
+          "mode": "simple",
+          "plant_suggest_step": 5,
+          "overstate_by": 0,
+          "minutes": 15,
+          "warn_actions": false
+        },
+        {
+          "run_id": "run-REPLACE-duplicate",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15
+        }
+      ]
+    },
+    "P02": {
+      "group": "experienced",
+      "tasks": [
+        {
+          "run_id": "run-REPLACE-practice",
+          "tool": "on",
+          "mode": "detailed",
+          "practice": true,
+          "minutes": 8
+        },
+        {
+          "run_id": "run-REPLACE-undo",
+          "tool": "on",
+          "mode": "detailed",
+          "overstate_by": 2,
+          "minutes": 15,
+          "warn_actions": true
+        },
+        {
+          "run_id": "run-REPLACE-duplicate",
+          "tool": "off",
+          "mode": "detailed",
+          "minutes": 15
+        },
+        {
+          "run_id": "run-REPLACE-repeat",
+          "tool": "on",
+          "mode": "detailed",
+          "minutes": 15
+        }
+      ]
+    }
+  }
+}

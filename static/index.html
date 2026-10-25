@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Verifier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <h1>Agent Verifier</h1>
+    </div>
+    <div class="topbar-right">
+      <div class="switch" role="group" aria-label="Level of detail">
+        <button type="button" data-mode="simple">Simple</button>
+        <button type="button" data-mode="detailed">Detailed</button>
+      </div>
+      <span id="env" class="env"></span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="rail">
+      <section class="rail-block" id="session-block" hidden>
+        <h2 id="session-title">Your session</h2>
+        <ol id="session-tasks" class="session-tasks"></ol>
+        <div id="session-timer" class="timer" aria-live="off"></div>
+        <div id="session-tries"></div>
+        <button id="finish-task" class="btn primary" hidden>I'm done with this task</button>
+      </section>
+      <section class="rail-block normal-only">
+        <h2>Start a run</h2>
+        <label for="scenario" class="field-label">Bug to fix</label>
+        <select id="scenario"></select>
+        <p id="scenario-task" class="hint"></p>
+        <button id="start-run" class="btn primary">Run the AI team</button>
+      </section>
+      <section class="rail-block grow normal-only">
+        <h2>Runs</h2>
+        <ul id="run-list" class="run-list"></ul>
+      </section>
+    </aside>
+
+    <main class="trace-col" id="trace-col">
+      <div class="empty" id="empty">
+        <h2>Pick a bug and run the AI team</h2>
+        <p>The team has a planner, a coder and a test runner. When a run fails, you can change one step and replay the run from there.</p>
+      </div>
+      <div class="empty session-screen" id="session-screen" hidden></div>
+      <div id="run-view" hidden>
+        <div id="run-head" class="run-head"></div>
+        <ol id="timeline" class="timeline"></ol>
+      </div>
+    </main>
+
+    <aside class="evidence" id="evidence" hidden>
+      <section class="panel" id="where-panel">
+        <h2>Where to fix</h2>
+        <div id="where-body"></div>
+      </section>
+      <section class="panel" id="effects-panel" hidden>
+        <h2>What the team did outside the code</h2>
+        <div id="effects-body"></div>
+      </section>
+      <section class="panel" id="verify-panel">
+        <h2>Did your change work?</h2>
+        <div id="verify-body"></div>
+      </section>
+      <section class="panel researcher" id="researcher-panel" hidden>
+        <h2>Researcher controls</h2>
+        <div id="researcher-body"></div>
+      </section>
+    </aside>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

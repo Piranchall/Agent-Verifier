@@ -1,0 +1,39 @@
+{
+  "id": "copy_names",
+  "title": "Duplicated tasks get confusing names",
+  "task": "When I duplicate a task in my to-do app, every copy gets the same name. Here is how it should work, like copying files: the first copy of \"Report\" is called \"Report (copy)\", the next one \"Report (copy 2)\", then \"Report (copy 3)\", and so on. Duplicating a copy counts as duplicating the original, so duplicating \"Report (copy)\" gives the next number for \"Report\", never \"Report (copy) (copy)\". Numbers are never reused: if \"Report (copy 2)\" is deleted, the next copy is still \"Report (copy 3)\". duplicate(task_id) returns the new task's id.",
+  "editable_files": [
+    "todo.py"
+  ],
+  "visible_tests": [
+    "test_visible.py"
+  ],
+  "hidden_tests": [
+    "test_hidden.py"
+  ],
+  "order": 30,
+  "good_edit": {
+    "step": 1,
+    "text": "In todo.py, add self._copy_counts = {} in __init__. In duplicate, get the base title by stripping a trailing \" (copy)\" or \" (copy N)\" with a regex like r\" \\(copy(?: \\d+)?\\)$\". Then do self._copy_counts[base] = self._copy_counts.get(base, 0) + 1 and name the copy \"base (copy)\" when the count is 1, otherwise \"base (copy N)\". Pick the number only from this counter, never by looking at existing titles, so deleted numbers are not reused."
+  },
+  "mock": {
+    "hint_patterns": [
+      "_copy_counts",
+      "counter",
+      "never by looking"
+    ],
+    "p_good_base": 0.2,
+    "p_good_hinted": 0.85
+  },
+  "plain_edit": {
+    "text": "Keep a running count of how many copies have ever been made of each task and use it to number the next copy. Don't work the number out from the copies that exist right now, because deleting a copy would make a number come back. Copying a copy should count as copying the original task."
+  },
+  "checks": {
+    "test_two_copies": "Two copies of \"Report\" are called \"Report (copy)\" and \"Report (copy 2)\".",
+    "test_copy_of_copy_uses_original": "Copying \"Report (copy)\" gives the next number for \"Report\", not \"Report (copy) (copy)\".",
+    "test_numbers_not_reused_after_delete": "After \"Report (copy 2)\" is deleted, the next copy is still \"Report (copy 3)\".",
+    "test_first_copy_deleted_not_reused": "After the first copy is deleted, the next copy is \"Report (copy 2)\", not \"Report (copy)\" again.",
+    "test_separate_tasks_count_separately": "Each task counts its own copies: the first copy of \"Budget\" is \"Budget (copy)\".",
+    "test_returns_new_id": "Duplicating gives back the new task's id and leaves the original unchanged."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "undo_redo",
+  "title": "Practice: undo and redo misbehave",
+  "task": "Undo in my to-do app doesn't work properly, and redo does nothing. Here is how it should work. Undo reverses the most recent delete, rename or toggle (done/not done), one action per press, newest first. An undone delete puts the task back exactly where it was in the list, with the same id. Redo re-applies the most recently undone action. Any new delete, rename or toggle clears the redo history. Pressing undo or redo when there is nothing to undo or redo does nothing.",
+  "editable_files": [
+    "todo.py"
+  ],
+  "visible_tests": [
+    "test_visible.py"
+  ],
+  "hidden_tests": [
+    "test_hidden.py"
+  ],
+  "good_edit": {
+    "step": 1,
+    "text": "Rewrite the undo system in todo.py with two stacks, self._undo and self._redo. Every delete/rename/toggle pushes a record onto _undo and clears _redo. Delete records ('delete', index, the whole item dict) and undo re-inserts that same dict at that index (same id, do not call add). Rename records ('rename', id, old_title, new_title). Toggle records ('toggle', id). undo() pops from _undo, reverses it and pushes it onto _redo; redo() pops from _redo, re-applies it and pushes it back onto _undo, without clearing _redo. Both do nothing when their stack is empty."
+  },
+  "mock": {
+    "hint_patterns": [
+      "two stacks",
+      "_redo",
+      "same dict",
+      "at that index",
+      "clears? _redo",
+      "whole item"
+    ],
+    "p_good_base": 0.3,
+    "p_good_hinted": 0.85
+  },
+  "order": 92,
+  "checks": {
+    "test_undo_rename": "Undo after a rename brings back the old name.",
+    "test_undo_delete_same_place_same_id": "Undo after a delete puts the task back in the same place, with the same id.",
+    "test_undo_toggle": "Undo after ticking a task as done un-ticks it.",
+    "test_newest_first": "Several undos reverse the most recent action first.",
+    "test_two_deletes_restore_positions": "Undoing two deletes puts both tasks back where they were.",
+    "test_redo": "Redo re-applies what was just undone.",
+    "test_redo_then_undo_again": "After a redo, undo works again.",
+    "test_new_action_clears_redo": "A new action clears redo, so redo does nothing afterwards.",
+    "test_empty_undo_redo_do_nothing": "Undo or redo with nothing to undo or redo changes nothing."
+  }
+}

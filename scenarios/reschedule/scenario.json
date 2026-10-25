@@ -1,0 +1,42 @@
+{
+  "id": "reschedule",
+  "title": "Weekly tasks drift after rescheduling",
+  "task": "Weekly tasks in my to-do app don't repeat properly. Here is how they should work. When I complete a weekly task, complete(task_id) creates the next copy and returns its id. Each copy is due 7 days after the date that copy was originally planned for. If I reschedule a single copy with set_due(), for example from Wednesday to Thursday because I'm busy, that only moves that one copy: the next copy is still 7 days after the original Wednesday, so the series stays on Wednesdays. Rescheduling the same copy more than once still keeps the series on its original day. Non-weekly tasks return None from complete().",
+  "editable_files": [
+    "todo.py"
+  ],
+  "visible_tests": [
+    "test_visible.py"
+  ],
+  "hidden_tests": [
+    "test_hidden.py"
+  ],
+  "order": 50,
+  "good_edit": {
+    "step": 1,
+    "text": "In todo.py, give every task a 'planned' date that is set once in add() (planned = due) and never changed by set_due(); set_due only changes 'due'. In complete(), for weekly tasks compute next_planned = item['planned'] + timedelta(days=7), then create the copy with add(title, next_planned, 'weekly') so its planned and due both start at next_planned. Never compute the next date from item['due'], because a rescheduled due date would shift the whole series."
+  },
+  "mock": {
+    "hint_patterns": [
+      "'planned'",
+      "planned date",
+      "never compute the next date from",
+      "item\\['planned'\\]"
+    ],
+    "p_good_base": 0.2,
+    "p_good_hinted": 0.85
+  },
+  "plain_edit": {
+    "text": "Each weekly task should remember the date it was originally planned for, separately from its due date. Moving one copy to another day should only change that copy. The next copy should always be planned 7 days after the originally planned date, never after the date it was moved to."
+  },
+  "checks": {
+    "test_next_week": "Completing a weekly task due Wednesday creates the next copy for the following Wednesday.",
+    "test_rescheduled_later_keeps_series_day": "Moving one copy from Wednesday to Thursday keeps the next copy on Wednesday.",
+    "test_rescheduled_earlier_keeps_series_day": "Moving one copy earlier, to Monday, keeps the next copy on Wednesday.",
+    "test_rescheduled_twice": "Moving the same copy twice still keeps the series on Wednesdays.",
+    "test_series_continues_after_reschedule": "After one moved copy, the following copies keep coming every Wednesday.",
+    "test_reschedule_a_later_copy": "Moving a later copy in the series doesn't shift the copies after it.",
+    "test_across_month": "A weekly task due Mar 31 repeats on Apr 7.",
+    "test_non_weekly": "Completing a task that doesn't repeat creates no new copy and marks it done."
+  }
+}

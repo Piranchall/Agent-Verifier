@@ -1,0 +1,541 @@
+{
+  "_design": [
+    "Generated for the HCI study. Within-subjects: every participant does 1 practice task + 3 real tasks.",
+    "Each real task has a different condition: tool on honest / tool on with a planted error / tool off (baseline).",
+    "Condition per scenario is rotated with a 3x3 Latin square; task order is A (repeat, copy, reschedule) or B (reschedule, copy, repeat).",
+    "Planted errors: repeat_dates and reschedule -> suggestion points at step 3 (first instruction); copy_names -> k of n overstated by 2.",
+    "Feature 3 warnings (RQ4) are between-subjects: on for 3 and off for 3 participants in each group, balanced across squares.",
+    "Everyone starts in Simple view and can switch. Needs STUDY_MODE=on and RELEASE_ACTIONS=on in .env.",
+    "Keys starting with _ are notes for the researcher; the app ignores them."
+  ],
+  "participants": {
+    "B01": {
+      "group": "beginner",
+      "_order": "A",
+      "_warnings": "on",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": true,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": true,
+          "_scenario": "repeat_dates",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "overstate_by": 2,
+          "warn_actions": true,
+          "_scenario": "copy_names",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "reschedule",
+          "_condition": "off"
+        }
+      ]
+    },
+    "B02": {
+      "group": "beginner",
+      "_order": "A",
+      "_warnings": "off",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": false,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": false,
+          "_scenario": "repeat_dates",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "copy_names",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": false,
+          "_scenario": "reschedule",
+          "_condition": "honest"
+        }
+      ]
+    },
+    "B03": {
+      "group": "beginner",
+      "_order": "A",
+      "_warnings": "on",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": true,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "repeat_dates",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": true,
+          "_scenario": "copy_names",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": true,
+          "_scenario": "reschedule",
+          "_condition": "planted"
+        }
+      ]
+    },
+    "B04": {
+      "group": "beginner",
+      "_order": "B",
+      "_warnings": "off",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": false,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "reschedule",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "overstate_by": 2,
+          "warn_actions": false,
+          "_scenario": "copy_names",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": false,
+          "_scenario": "repeat_dates",
+          "_condition": "honest"
+        }
+      ]
+    },
+    "B05": {
+      "group": "beginner",
+      "_order": "B",
+      "_warnings": "on",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": true,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": true,
+          "_scenario": "reschedule",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "copy_names",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": true,
+          "_scenario": "repeat_dates",
+          "_condition": "planted"
+        }
+      ]
+    },
+    "B06": {
+      "group": "beginner",
+      "_order": "B",
+      "_warnings": "off",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": false,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": false,
+          "_scenario": "reschedule",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": false,
+          "_scenario": "copy_names",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "repeat_dates",
+          "_condition": "off"
+        }
+      ]
+    },
+    "E01": {
+      "group": "experienced",
+      "_order": "A",
+      "_warnings": "on",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": true,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": true,
+          "_scenario": "repeat_dates",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "overstate_by": 2,
+          "warn_actions": true,
+          "_scenario": "copy_names",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "reschedule",
+          "_condition": "off"
+        }
+      ]
+    },
+    "E02": {
+      "group": "experienced",
+      "_order": "A",
+      "_warnings": "off",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": false,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": false,
+          "_scenario": "repeat_dates",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "copy_names",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": false,
+          "_scenario": "reschedule",
+          "_condition": "honest"
+        }
+      ]
+    },
+    "E03": {
+      "group": "experienced",
+      "_order": "A",
+      "_warnings": "on",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": true,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "repeat_dates",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": true,
+          "_scenario": "copy_names",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": true,
+          "_scenario": "reschedule",
+          "_condition": "planted"
+        }
+      ]
+    },
+    "E04": {
+      "group": "experienced",
+      "_order": "B",
+      "_warnings": "off",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": false,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "reschedule",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "overstate_by": 2,
+          "warn_actions": false,
+          "_scenario": "copy_names",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": false,
+          "_scenario": "repeat_dates",
+          "_condition": "honest"
+        }
+      ]
+    },
+    "E05": {
+      "group": "experienced",
+      "_order": "B",
+      "_warnings": "on",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": true,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": true,
+          "_scenario": "reschedule",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "copy_names",
+          "_condition": "off"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": true,
+          "_scenario": "repeat_dates",
+          "_condition": "planted"
+        }
+      ]
+    },
+    "E06": {
+      "group": "experienced",
+      "_order": "B",
+      "_warnings": "off",
+      "tasks": [
+        {
+          "run_id": "run-1025-232440-ffeb",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 8,
+          "practice": true,
+          "warn_actions": false,
+          "_scenario": "undo_redo",
+          "_condition": "practice"
+        },
+        {
+          "run_id": "run-1025-231757-21fd",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "plant_suggest_step": 3,
+          "warn_actions": false,
+          "_scenario": "reschedule",
+          "_condition": "planted"
+        },
+        {
+          "run_id": "run-1025-231345-90ab",
+          "tool": "on",
+          "mode": "simple",
+          "minutes": 15,
+          "warn_actions": false,
+          "_scenario": "copy_names",
+          "_condition": "honest"
+        },
+        {
+          "run_id": "run-1025-231526-d262",
+          "tool": "off",
+          "mode": "simple",
+          "minutes": 15,
+          "_scenario": "repeat_dates",
+          "_condition": "off"
+        }
+      ]
+    }
+  }
+}
